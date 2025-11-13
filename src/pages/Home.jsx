@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
-import turkey from "../assets/picks/classicTurkey.jpg";
+import turkey from "../assets/picks/classicTurkey.JPG";
 import salmon from "../assets/picks/salmon.JPG";
 import jalapeno from "../assets/picks/jalapeno.JPG";
+
+
 import heroImg from "../assets/hero/Bakedbagels.jpg";
 import bakingImg from "../assets/about/bagel2.png";
 import qrDownload from "../assets/qr/qr.webp";
