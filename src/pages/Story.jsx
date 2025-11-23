@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { FaStore, FaBreadSlice, FaGlobe } from "react-icons/fa";
 
-import story1 from "../assets/story/img1.JPG";
-import story2 from "../assets/story/img2.JPG";
-import story3 from "../assets/story/img3.JPG";
+import story1 from "../assets/story/img1.jpg";
+import story2 from "../assets/story/img2.jpg";
+import story3 from "../assets/story/img3.jpg";
 
 
 
