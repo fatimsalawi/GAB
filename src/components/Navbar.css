@@ -1,22 +1,45 @@
-/* COLORS (from brand guide) */
+/* ================================
+   BRAND COLORS + FONTS
+================================ */
+
+@font-face {
+  font-family: "Apparat";
+  src: url("/fonts/EldwinTrial-CapitalsSemiBold.otf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Apparat";
+  src: url("/fonts/EldwinTrial-CapitalsSemiBold.otf") format("truetype");
+  font-weight: 700;
+}
+
 :root {
   --cream: #f7f1e8;
-  --brown: #7a4b37;
+
+  /* Exact GAB red you provided */
+  --gab-red: #d32029;
+  --gab-red-dark: #92171d;
+
   --dark: #3a1f1a;
-  --accent: #a6342d;
+}
+
+/* Default font everywhere */
+* {
+  font-family: "Apparat", sans-serif;
 }
 
 /* NAV WRAPPER */
 .nav-wrap {
   background: var(--cream);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
   z-index: 1000;
   width: 100%;
 }
 
-/* Rounded bubble container */
+/* NAV CONTAINER */
 .nav-bubble {
   max-width: 1200px;
   margin: 0 auto;
@@ -24,7 +47,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-radius: 36px;
 }
 
 /* LOGO + BRAND */
@@ -36,45 +58,64 @@
 }
 
 .brand-logo {
-  height: 100px; /* ⬆️ made it bigger */
+  height: 85px;
   width: auto;
   object-fit: contain;
 }
 
 .brand-text {
-  font-weight: 800;
-  letter-spacing: 0.5px;
-  font-size: 1.25rem;
-  color: var(--dark);
-  white-space: nowrap;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  font-size: 1.35rem;
+  color: var(--gab-red);
+  text-transform: uppercase;
 }
 
 /* NAV LINKS */
 .nav-links {
   display: flex;
-  gap: 24px;
+  gap: 28px;
   align-items: center;
 }
 
 .nav-link {
-  color: var(--brown);
-  text-decoration: none;
+  color: var(--gab-red);
+  font-size: 1.05rem;
   font-weight: 500;
-  font-size: 1rem;
+  text-decoration: none !important;     /* ← remove default underline */
+  position: relative;
+  padding-bottom: 4px;
   transition: 0.25s;
 }
 
-.nav-link:hover,
+/* Hover color */
+.nav-link:hover {
+  color: var(--gab-red-dark);
+}
+
+/* ACTIVE PAGE (with underline bar) */
 .nav-link.active {
-  color: var(--accent);
+  color: var(--gab-red-dark) !important;
+  text-decoration: none !important;     /* ← ensure only custom line appears */
+}
+
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: var(--gab-red-dark);
+  border-radius: 2px;
 }
 
 /* ORDER BUTTON */
 .btn--pill.btn--light {
   padding: 10px 20px;
   border-radius: 50px;
-  border: 2px solid var(--accent);
-  color: var(--accent);
+  border: 2px solid var(--gab-red);
+  color: var(--gab-red);
   background: transparent;
   font-weight: 600;
   text-decoration: none;
@@ -82,7 +123,7 @@
 }
 
 .btn--pill.btn--light:hover {
-  background: var(--accent);
+  background: var(--gab-red);
   color: white;
 }
 
@@ -90,10 +131,10 @@
 .nav-toggle {
   display: none;
   background: none;
-  font-size: 24px;
+  font-size: 26px;
   border: none;
   cursor: pointer;
-  color: var(--accent);
+  color: var(--gab-red);
 }
 
 @media (max-width: 900px) {
@@ -118,7 +159,7 @@
   }
 
   .brand-logo {
-    height: 42px;
+    height: 48px;
   }
 
   .brand-text {

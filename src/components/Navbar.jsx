@@ -4,10 +4,10 @@ import "./Navbar.css";
 import logo from "../assets/logo/gab-logo.png"; // ✅ logo path
 
 const links = [
-  { to: "/locations", label: "Locations" },
-  { to: "/menu", label: "Menu" },
   { to: "/story", label: "About" },
+  { to: "/menu", label: "Menu" },
   { to: "/gallery", label: "Gallery" },
+  { to: "/locations", label: "Locations" },
   { to: "/contact", label: "Contact" },
 ];
 

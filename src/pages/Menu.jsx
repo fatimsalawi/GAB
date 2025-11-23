@@ -1,5 +1,22 @@
 import { useEffect, useState, useMemo } from "react";
 
+// ===============================
+// AUTO-LOAD ALL IMAGES (Vite)
+// ===============================
+const menuImages = Object.fromEntries(
+  Object.entries(
+    import.meta.glob("../assets/menu/*.{png,jpg,jpeg,webp}", {
+      eager: true,
+    })
+  ).map(([path, mod]) => {
+    const fileName = path
+      .split("/")
+      .pop()
+      .replace(/\.(png|jpg|jpeg|webp)$/i, "")
+      .toLowerCase();
+    return [fileName, mod.default];
+  })
+);
 
 export default function Menu() {
   const [groups, setGroups] = useState({});
@@ -10,7 +27,7 @@ export default function Menu() {
   useEffect(() => {
     (async () => {
       try {
-        const r = await fetch(`${API_BASE}/api/MenuItems/grouped`, { mode: "cors" });
+        const r = await fetch(`${API_BASE}/api/MenuItems/grouped`);
         if (!r.ok) throw new Error(await r.text());
         const data = await r.json();
         setGroups(data);
@@ -21,65 +38,81 @@ export default function Menu() {
     })();
   }, [API_BASE]);
 
+  // ===============================
+  // UPDATED CATEGORY ORDERING
+  // Added: Smoothie Blends + G&G Drinks
+  // ===============================
   const orderedCats = useMemo(() => {
     const order = [
       "Bagels",
+      "Super Bagel",
       "Sandwiches",
       "Breakfast Specials",
       "Sides & Salads",
       "Beverages",
+       // ⭐ NEW CATEGORIES
+      "Smoothie Blends",
+      "G&G Drinks",
       "Desserts",
     ];
+
     const present = Object.keys(groups);
-    return order.filter(c => present.includes(c)).concat(present.filter(c => !order.includes(c)));
+
+    return order
+      .filter((c) => present.includes(c))
+      .concat(present.filter((c) => !order.includes(c)));
   }, [groups]);
 
   if (err) return <div className="error-msg">{err}</div>;
-  if (!Object.keys(groups).length) return <div className="error-msg">Loading menu…</div>;
+  if (!Object.keys(groups).length) return <div className="error-msg">Loading…</div>;
 
   return (
     <section className="menu-section">
       <div className="container">
         <h1 className="menu-title">Menu</h1>
 
-        {orderedCats.map(cat => (
+        {orderedCats.map((cat) => (
           <div key={cat} className="menu-category">
             <div className="category-divider">
               <span className="category-title">{cat}</span>
             </div>
 
-            {groups[cat].map(item => (
-              <div key={item.id} className="menu-item">
-                <div className="menu-item-info">
-                  <div className="item-name">
-                    {item.name}
-                    <Badges it={item} />
-                  </div>
-                  {item.description && <p className="item-desc">{item.description}</p>}
-                  {item.is_signature && <span className="signature">⭐ Customer Favorite</span>}
-                </div>
+            {groups[cat].map((item) => {
+              // Generate filename key
+              const fileKey = item.name
+                .toLowerCase()
+                .replace(/&/g, "and")
+                .replace(/[^\w\s-]/g, "")
+                .trim()
+                .replace(/\s+/g, "-");
 
-                {"price" in item && (
-                  <div className="item-price">BHD {Number(item.price).toFixed(3)}</div>
-                )}
-              </div>
-            ))}
+              const imgSrc = menuImages[fileKey];
+
+              return (
+                <div key={item.id} className="menu-item">
+
+                  {/* IMAGE */}
+                  {imgSrc && (
+                    <div className="menu-item-image">
+                      <img src={imgSrc} alt={item.name} />
+                    </div>
+                  )}
+
+                  {/* INFO */}
+                  <div className="menu-item-info">
+                    <div className="item-name">{item.name}</div>
+                    {item.description && <p className="item-desc">{item.description}</p>}
+                  </div>
+
+                  <div className="item-price">
+                    BHD {Number(item.price).toFixed(3)}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         ))}
       </div>
     </section>
-  );
-}
-
-function Badges({ it }) {
-  const chip = (txt, title) => (
-    <span className="badge" title={title}>{txt}</span>
-  );
-
-  return (
-    <span className="badge-row">
-      {it.is_vegetarian && chip("🌿", "Vegetarian")}
-      {it.is_spicy && chip("🌶️", "Spicy")}
-    </span>
   );
 }

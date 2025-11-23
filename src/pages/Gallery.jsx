@@ -1,36 +1,38 @@
+import img1 from "../assets/gallery/1.jpg";
+import img2 from "../assets/gallery/2.jpg";
+import img3 from "../assets/gallery/3.jpg";
+import img4 from "../assets/gallery/4.jpg";
+import img5 from "../assets/gallery/5.jpg";
+import img6 from "../assets/gallery/6.jpg";
+
+// ⭐ Import the flour texture image
+import flourTexture from "../assets/patterns/light-beige.png";
 
 export default function Gallery() {
   const images = [
-    { src: "/assets/gallery/1.jpg", caption: "Fresh from our oven" },
-    { src: "/assets/gallery/2.jpg", caption: "Crafted daily" },
-    { src: "/assets/gallery/3.jpg", caption: "Perfect mornings start here" },
-    { src: "/assets/gallery/4.jpg", caption: "The aroma of freshly baked bagels" },
-    { src: "/assets/gallery/5.jpg", caption: "From our kitchen to your table" },
-    { src: "/assets/gallery/6.jpg", caption: "Baked with love and passion" },
-    { src: "/assets/gallery/7.jpg", caption: "Coffee, friends, and bagels" },
-    { src: "/assets/gallery/8.jpg", caption: "A taste of Chicago in Bahrain" },
+    { src: img1, caption: "Fresh from our oven" },
+    { src: img2, caption: "Crafted daily" },
+    { src: img3, caption: "Perfect mornings start here" },
+    { src: img4, caption: "Made with passion" },
+    { src: img5, caption: "From our kitchen to you" },
+    { src: img6, caption: "Handcrafted bagels" },
   ];
 
   return (
     <section className="gallery-page">
       <div className="container">
-        <h1 className="display-sm" style={{ textAlign: "center", marginBottom: "32px" }}>
-          Gallery
-        </h1>
 
-        {/* Optional Video Loop */}
-        <div className="video-section">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="baking-video"
-            src="/assets/gallery/baking-loop.mp4"
-          />
+        {/* ⭐ Header with flour texture background */}
+        <div
+          className="gallery-header-bg"
+          style={{ backgroundImage: `url(${flourTexture})` }}
+        >
+          <h1 className="display-sm gallery-title">Gallery</h1>
+          <p className="gallery-subtitle">
+            Discover our handcrafted bagels, freshly baked every day.
+          </p>
         </div>
 
-        {/* Image Grid */}
         <div className="gallery-grid">
           {images.map((img, i) => (
             <div className="gallery-item" key={i}>
@@ -41,6 +43,7 @@ export default function Gallery() {
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

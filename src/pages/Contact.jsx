@@ -74,9 +74,9 @@ export default function Contact() {
 
           {/* Social */}
           <div className="social-links">
-            <a href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram</a> |
-            <a href="https://www.facebook.com" target="_blank" rel="noreferrer">Facebook</a> |
-            <a href="https://goo.gl/maps/" target="_blank" rel="noreferrer">Google Maps</a>
+            <a href="https://www.instagram.com/tgab.bh/?igsh=YnljdDJ0c3ZwanJ3#" target="_blank" rel="noreferrer">Instagram</a> |
+            <a href="https://www.facebook.com/TGAB.ME/?locale=ar_AR" target="_blank" rel="noreferrer">Facebook</a> |
+            <a href="https://maps.google.com/?q=Fontana Tower Bahrain" target="_blank" rel="noreferrer">Google Maps</a>
           </div>
 
           {/* Delivery Partners WITH LOGOS */}
