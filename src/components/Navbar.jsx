@@ -46,14 +46,14 @@ export default function Navbar() {
         </nav>
 
         {/* ✅ Order Button */}
-        <a
+        {/* <a
           className="btn btn--pill btn--light"
           href="https://www.talabat.com/bahrain"
           target="_blank"
           rel="noreferrer"
         >
           ORDER ONLINE
-        </a>
+        </a> */}
       </div>
     </header>
   );

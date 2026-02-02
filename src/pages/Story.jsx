@@ -35,7 +35,7 @@ export default function Story() {
 
       {/* BLOCK 1 */}
       <div className="story-block reveal-up">
-        <img src={story1} className="story-photo" alt="Story 1" />
+        <img src={story1} className="story-photo" alt="Story 1" loading="lazy"/>
         <div className="story-content">
           <div className="story-icon-wrap">
             <FaStore className="story-icon" />
@@ -51,14 +51,14 @@ export default function Story() {
 
       {/* BLOCK 2 */}
       <div className="story-block reverse reveal-up">
-        <img src={story2} className="story-photo" alt="Story 2" />
+        <img src={story2} className="story-photo" alt="Story 2" loading="lazy"/>
         <div className="story-content">
           <div className="story-icon-wrap">
             <FaBreadSlice className="story-icon" />
           </div>
           <h3>Crafting the Perfect Bagel</h3>
           <p>
-            Using traditional techniques, our bakers perfected the soft–chewy texture
+            Using traditional techniques, our bakers perfected the soft texture
             customers fell in love with.
           </p>
         </div>
@@ -66,7 +66,7 @@ export default function Story() {
 
       {/* BLOCK 3 */}
       <div className="story-block reveal-up">
-        <img src={story3} className="story-photo" alt="Story 3" />
+        <img src={story3} className="story-photo" alt="Story 3" loading="lazy"/>
         <div className="story-content">
           <div className="story-icon-wrap">
             <FaGlobe className="story-icon" />

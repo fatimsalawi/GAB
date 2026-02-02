@@ -94,7 +94,7 @@ export default function Menu() {
                   {/* IMAGE */}
                   {imgSrc && (
                     <div className="menu-item-image">
-                      <img src={imgSrc} alt={item.name} />
+                      <img src={imgSrc} alt={item.name} loading="lazy"/>
                     </div>
                   )}
 
@@ -104,9 +104,9 @@ export default function Menu() {
                     {item.description && <p className="item-desc">{item.description}</p>}
                   </div>
 
-                  <div className="item-price">
+                  {/* <div className="item-price">
                     BHD {Number(item.price).toFixed(3)}
-                  </div>
+                  </div> */}
                 </div>
               );
             })}

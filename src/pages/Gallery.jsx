@@ -37,7 +37,7 @@ export default function Gallery() {
         <div className="gallery-grid">
           {images.map((img, i) => (
             <div className="gallery-item" key={i}>
-              <img src={img.src} alt={img.caption} />
+              <img src={img.src} alt={img.caption} loading="lazy"/>
               <div className="gallery-overlay">
                 <p>{img.caption}</p>
               </div>

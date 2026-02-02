@@ -5,7 +5,7 @@
   --cream:#FAF5EE;
   --beige:#F2E7D9;
   --warm-brown:#6B4F3A;
-  --ink:#1E1E1E;
+  --ink:#1E1E1E;    
   --deep-red:#8E2C2C;
   --radius:18px;
   --gap:24px;
@@ -77,19 +77,28 @@ img{max-width:100%; display:block}
   padding:12px 18px;
 }
 
-/* Hero */
+/* ========================= */
+/* HERO (FIXED) */
+/* ========================= */
+
 .hero{
   position:relative;
   border-radius:var(--radius);
   overflow:hidden;
-  width:min(1200px, 92vw);
+
+  /* FIX: keep hero aligned with container */
+  width:100%;
+  max-width:1200px;
+
   margin:28px auto 40px;
 }
+
 .hero__media img{
   width:100%;
   height:56vh;
   object-fit:cover;
 }
+
 .hero__overlay{
   position:absolute;
   inset:0;
@@ -101,21 +110,25 @@ img{max-width:100%; display:block}
   background:linear-gradient(0deg, rgba(0,0,0,0.55), rgba(0,0,0,0.25));
   padding:24px;
 }
-.hero__overlay h1{
-  margin-bottom:20px;
-}
+
+.hero__overlay h1{margin-bottom:20px}
+
 .hero__overlay .lead{
   max-width:700px;
-  color:#fff;
-  opacity:.95;
   margin-bottom:28px;
 }
+
 .hero .actions{
-  margin-top:18px;
   display:flex;
   gap:12px;
   justify-content:center;
 }
+
+/* FIX: remove page-level flex centering */
+.home-page{
+  width:100%;
+}
+
 
 /* Split */
 .section--split .split{
@@ -628,11 +641,11 @@ img{max-width:100%; display:block}
 
 
 
-
 /* ========================================
    STORY PAGE — NEW MODERN DESIGN
 ======================================== */
-/* CLEAN PAGE BACKGROUND (no image) */
+
+/* CLEAN PAGE BACKGROUND */
 .story-page {
   padding: 60px 0;
   background: #fdf7f0;   /* soft cream */
@@ -744,101 +757,180 @@ img{max-width:100%; display:block}
   transform: translateY(0);
 }
 
-/* gallery page  */
-.gallery-page {
-  background: var(--cream);
-  padding: 120px 0;
-  display: flex;
-  justify-content: center;
+
+/* ========================================
+   MOBILE RESPONSIVE FIXES
+======================================== */
+@media (max-width: 768px) {
+
+  /* Stack blocks vertically */
+  .story-block {
+    flex-direction: column !important;
+    text-align: center;
+    padding: 25px;
+    gap: 20px;
+  }
+
+  /* Reverse block also becomes normal stacked layout */
+  .story-block.reverse {
+    flex-direction: column !important;
+  }
+
+  /* Fix images */
+  .story-photo {
+    width: 100% !important;
+    max-width: 350px;
+    height: auto !important;
+  }
+
+  /* Content adjustments */
+  .story-content {
+    padding: 0 10px;
+  }
+
+  .story-content h3 {
+    font-size: 22px;
+  }
+
+  .story-content p {
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  /* Icons resized */
+  .story-icon-wrap {
+    width: 65px;
+    height: 65px;
+  }
+
+  .story-icon {
+    font-size: 30px;
+  }
+
+  /* Header text adjustments */
+  .story-header h1 {
+    font-size: 36px;
+  }
+
+  .story-header p {
+    font-size: 16px;
+    padding: 0 10px;
+  }
 }
 
-.gallery-page .container {
-  width: 100%;
-  max-width: 1150px;
-  margin: 0 auto;
-  text-align: center;
-  padding: 0 20px;
+
+/* ========================================
+   VERY SMALL SCREENS (optional)
+======================================== */
+@media (max-width: 450px) {
+  .story-header h1 {
+    font-size: 30px;
+  }
+
+  .story-photo {
+    max-width: 300px;
+  }
+
+  .story-content h3 {
+    font-size: 20px;
+  }
 }
 
-/* ⭐ Background texture wrapper */
-.gallery-header-bg {
-  background-size: cover;
-  background-position: center;
-  background-repeat: repeat;
-  padding: 60px 20px;
-  border-radius: 20px;
-  margin-bottom: 60px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-}
+  /* gallery page  */
+  .gallery-page {
+    background: var(--cream);
+    padding: 120px 0;
+    display: flex;
+    justify-content: center;
+  }
 
-.gallery-title {
-  text-align: center;
-  margin-bottom: 8px;
-   color: var(--brown) !important;
-}
+  .gallery-page .container {
+    width: 100%;
+    max-width: 1150px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 20px;
+  }
 
-.gallery-subtitle {
-  text-align: center;
-  color: #7a5f46;
-  font-size: 1.2rem;
-  margin-bottom: 0;
-}
-.gallery-page h1.gallery-title,
-.gallery-header-bg h1.gallery-title,
-.gallery-title.display-sm {
-  color: #8b2e24 !important;    /* the same brown your MENU uses */
-  -webkit-text-fill-color: #8b2e24 !important;
-}
+  /* ⭐ Background texture wrapper */
+  .gallery-header-bg {
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    padding: 60px 20px;
+    border-radius: 20px;
+    margin-bottom: 60px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  }
 
-/* Grid */
-.gallery-grid {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
-}
+  .gallery-title {
+    text-align: center;
+    margin-bottom: 8px;
+    color: var(--brown) !important;
+  }
 
-/* Card */
-.gallery-item {
-  position: relative;
-  overflow: hidden;
-  border-radius: 16px;
-  background: white;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-}
+  .gallery-subtitle {
+    text-align: center;
+    color: #7a5f46;
+    font-size: 1.2rem;
+    margin-bottom: 0;
+  }
+  .gallery-page h1.gallery-title,
+  .gallery-header-bg h1.gallery-title,
+  .gallery-title.display-sm {
+    color: #8b2e24 !important;    /* the same brown your MENU uses */
+    -webkit-text-fill-color: #8b2e24 !important;
+  }
 
-.gallery-item img {
-  width: 100%;
-  height: 280px;
-  object-fit: cover;
-  transition: transform 0.35s ease;
-}
+  /* Grid */
+  .gallery-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
 
-.gallery-item:hover img {
-  transform: scale(1.06);
-}
+  /* Card */
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
 
-/* Overlay */
-.gallery-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: 0.3s ease;
-  font-size: 1.2rem;
-  font-weight: 500;
-  text-align: center;
-  padding: 12px;
-}
+  .gallery-item img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+  }
 
-.gallery-item:hover .gallery-overlay {
-  opacity: 1;
-}
+  .gallery-item:hover img {
+    transform: scale(1.06);
+  }
+
+  /* Overlay */
+  .gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: 0.3s ease;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 12px;
+  }
+
+  .gallery-item:hover .gallery-overlay {
+    opacity: 1;
+  }
 
 
 /* ============================
